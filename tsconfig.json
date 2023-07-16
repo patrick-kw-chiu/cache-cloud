@@ -1,0 +1,8 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"types": ["@cloudflare/workers-types"],
+		"target": "esnext",
+		"module": "commonjs"
+	}
+}

@@ -1,0 +1,12 @@
+name = "cache-cloud"
+main = "src/index.ts"
+compatibility_date = "2023-07-31"
+
+[vars]
+# API_TOKEN = "c50b281d-2776-4b9f-9d1e-402539ee4e35"
+# CORS_ORIGINS = ["http://localhost:3000"]
+
+[[kv_namespaces]]
+binding = "KV"
+id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+preview_id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
