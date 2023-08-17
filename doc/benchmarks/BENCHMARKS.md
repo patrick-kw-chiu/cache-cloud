@@ -2,12 +2,16 @@
 
 ### 1. Read 1 key
 
+#### Script
+
 ```shell
 ab -k -c 10 -n 3000\
   -H "X-API-Token:<api-token>"\
   -e "./doc/benchmarks/read-1-key-10-concurrency-3000-requests.csv"\
   "https://<your-cache-cloud-host>/kv/values/key-1"
 ```
+
+#### Results
 
 ```
 Server Software:        cloudflare
@@ -53,12 +57,16 @@ Percentage of the requests served within a certain time (ms)
 
 ### 2. Read 5 keys
 
+#### Script
+
 ```shell
 ab -k -c 10 -n 3000\
   -H "X-API-Token:<api-token>"\
   -e "./doc/benchmarks/read-5-keys-10-concurrency-3000-requests.csv"\
   "https://<your-cache-cloud-host>/kv/values?key=a%3D%3F%26b=%2F&key=1e6e1ddc-913b-4178-a9ec-57f649c5bcdf&key=key-3&key=key-4&key=key-5"
 ```
+
+#### Results
 
 ```
 Server Software:        cloudflare
@@ -104,12 +112,16 @@ Percentage of the requests served within a certain time (ms)
 
 ### 3. Read 20 keys
 
+#### Script
+
 ```shell
 ab -k -c 10 -n 3000\
   -H "X-API-Token:<api-token>"\
   -e "./doc/benchmarks/read-20-keys-10-concurrency-3000-requests.csv"\
   "https://<your-cache-cloud-host>/kv/values?key=a%3D%3F%26b=%2F&key=1e6e1ddc-913b-4178-a9ec-57f649c5bcdf&key=key-3&key=key-4&key=key-5&key=key-6&key=key-7&key=key-8&key=key-9&key=key-10&key=key-11&key=key-12&key=key-13&key=key-14&key=key-15&key=key-16&key=key-17&key=key-18&key=key-19&key=key-20"
 ```
+
+#### Results
 
 ```
 Server Software:        cloudflare
@@ -155,6 +167,8 @@ Percentage of the requests served within a certain time (ms)
 
 ### 4. Write 1 key
 
+#### Script
+
 ```shell
 ab -k -c 5 -n 500\
   -H "X-API-Token:<api-token>"\
@@ -162,6 +176,8 @@ ab -k -c 5 -n 500\
   -u "./doc/benchmarks/write-1-key-request-body.json"\
   "https://<your-cache-cloud-host>/kv/values/key-1"
 ```
+
+#### Results
 
 ```
 Server Software:        cloudflare
@@ -210,6 +226,8 @@ Percentage of the requests served within a certain time (ms)
 
 ### 5. Delete 1 key
 
+#### Script
+
 ```shell
 ab -k -c 5 -n 500\
   -H "X-API-Token:<api-token>"\
@@ -217,6 +235,8 @@ ab -k -c 5 -n 500\
   -m "DELETE"\
   "https://<your-cache-cloud-host>/kv/values/key-1"
 ```
+
+#### Results
 
 ```
 Server Software:        cloudflare
@@ -262,12 +282,16 @@ Percentage of the requests served within a certain time (ms)
 
 ### 6. List 100 keys
 
+#### Script
+
 ```shell
 ab -k -c 5 -n 200\
   -H "X-API-Token:<api-token>"\
   -e "./doc/benchmarks/list-1-key-5-concurrency-200-requests.csv"\
   "https://<your-cache-cloud-host>/kv/keys?limit=100"
 ```
+
+#### Results
 
 ```
 Server Software:        cloudflare
