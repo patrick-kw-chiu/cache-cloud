@@ -266,5 +266,47 @@ Percentage of the requests served within a certain time (ms)
 ab -k -c 5 -n 200\
   -H "X-API-Token:<api-token>"\
   -e "./benchmarks/list-1-key-5-concurrency-200-requests.csv"\
-  "https://<your-cache-cloud-host>/kv/values/key-1"
+  "https://<your-cache-cloud-host>/kv/keys?limit=100"
+```
+
+```
+Server Software:        cloudflare
+Server Hostname:        <your-cache-cloud-host>
+Server Port:            443
+SSL/TLS Protocol:       TLSv1.2,ECDHE-ECDSA-CHACHA20-POLY1305,256,256
+Server Temp Key:        ECDH X25519 253 bits
+TLS Server Name:        <your-cache-cloud-host>
+
+Document Path:          /kv/keys?limit=100
+Document Length:        2586 bytes
+
+Concurrency Level:      5
+Time taken for tests:   1.359 seconds
+Complete requests:      200
+Failed requests:        0
+Keep-Alive requests:    200
+Total transferred:      647866 bytes
+HTML transferred:       517200 bytes
+Requests per second:    147.12 [#/sec] (mean)
+Time per request:       33.986 [ms] (mean)
+Time per request:       6.797 [ms] (mean, across all concurrent requests)
+Transfer rate:          465.39 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   9.7      0      72
+Processing:    22   29   8.5     28      96
+Waiting:       21   29   8.5     28      96
+Total:         22   31  15.7     28     158
+
+Percentage of the requests served within a certain time (ms)
+  50%     28
+  66%     29
+  75%     31
+  80%     32
+  90%     36
+  95%     41
+  98%     95
+  99%    145
+ 100%    158 (longest request)
 ```
