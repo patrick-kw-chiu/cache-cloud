@@ -1,6 +1,6 @@
 # Benchmarks
 
-### 1. 1 key read
+### 1. Read 1 key
 
 ```shell
 ab -k -c 10 -n 3000\
@@ -51,7 +51,7 @@ Percentage of the requests served within a certain time (ms)
  100%    244 (longest request)
 ```
 
-### 2. 5 keys read
+### 2. Read 5 keys
 
 ```shell
 ab -k -c 10 -n 3000\
@@ -102,7 +102,7 @@ Percentage of the requests served within a certain time (ms)
  100%    373 (longest request)
 ```
 
-### 3. 20 keys read
+### 3. Read 20 keys
 
 ```shell
 ab -k -c 10 -n 3000\
@@ -153,7 +153,7 @@ Percentage of the requests served within a certain time (ms)
  100%    733 (longest request)
 ```
 
-### 4. 1 key write
+### 4. Write 1 key
 
 ```shell
 ab -k -c 5 -n 500\
@@ -208,7 +208,7 @@ Percentage of the requests served within a certain time (ms)
  100%    313 (longest request)
 ```
 
-### 5. 1 key delete
+### 5. Delete 1 key
 
 ```shell
 ab -k -c 5 -n 500\
@@ -260,7 +260,7 @@ Percentage of the requests served within a certain time (ms)
  100%    341 (longest request)
 ```
 
-### 6. list
+### 6. List 100 keys
 
 ```shell
 ab -k -c 5 -n 200\
