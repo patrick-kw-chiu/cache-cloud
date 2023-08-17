@@ -72,34 +72,34 @@ Document Path:          /kv/values?key=a%3D%3F%26b=%2F&key=1e6e1ddc-913b-4178-a9
 Document Length:        283 bytes
 
 Concurrency Level:      10
-Time taken for tests:   12.094 seconds
+Time taken for tests:   11.339 seconds
 Complete requests:      3000
 Failed requests:        0
 Keep-Alive requests:    3000
-Total transferred:      2807290 bytes
+Total transferred:      2807898 bytes
 HTML transferred:       849000 bytes
-Requests per second:    248.06 [#/sec] (mean)
-Time per request:       40.313 [ms] (mean)
-Time per request:       4.031 [ms] (mean, across all concurrent requests)
-Transfer rate:          226.69 [Kbytes/sec] received
+Requests per second:    264.57 [#/sec] (mean)
+Time per request:       37.797 [ms] (mean)
+Time per request:       3.780 [ms] (mean, across all concurrent requests)
+Transfer rate:          241.83 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    0   6.3      0     122
-Processing:    26   39  17.7     36     283
-Waiting:       26   39  17.7     36     283
-Total:         26   40  20.2     36     283
+Connect:        0    0   4.7      0     102
+Processing:    25   37  16.9     34     373
+Waiting:       25   37  16.9     34     373
+Total:         25   37  17.8     34     373
 
 Percentage of the requests served within a certain time (ms)
-  50%     36
-  66%     39
-  75%     41
-  80%     43
-  90%     48
-  95%     55
-  98%     69
-  99%     94
- 100%    283 (longest request)
+  50%     34
+  66%     36
+  75%     38
+  80%     39
+  90%     44
+  95%     49
+  98%     61
+  99%     91
+ 100%    373 (longest request)
 ```
 
 ### 3. 20 keys read
