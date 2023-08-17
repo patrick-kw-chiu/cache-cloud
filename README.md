@@ -38,7 +38,7 @@ Cache Cloud leverages the edgy and serverless nature of Cloudflare Workers and K
 
 Note: There could be deviations if the benchmarking scripts are executed in different locations in the world.
 
-See details in the [benchmarks doc](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/doc/BENCHMARKS.md)
+See detailed results in the [benchmarks doc](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/doc/benchmarks/BENCHMARKS.md)
 
 ### 1. Single-key read operation
 
