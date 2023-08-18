@@ -5,7 +5,8 @@
 	"private": true,
 	"scripts": {
 		"deploy": "wrangler deploy",
-		"start": "wrangler dev"
+		"start": "wrangler dev",
+		"login": "wrangler login"
 	},
 	"keywords": [
 		"cache",

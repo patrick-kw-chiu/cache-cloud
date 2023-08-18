@@ -13,23 +13,25 @@
 
 #### 2.1. Configure Cloudflare Workers
 
-1. Click **"Overview"** > **"Create Worker"**
+1. Click **"Overview"** > Click **"Create Worker"**
 
 ![step 1](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/assets/configure-cloudflare-workers-1.png)
 
-2. **"Name"** your subdomain > **"Deploy"**
+2. Name your Worker's subdomain as **"cache-cloud"** > Click **"Deploy"**
 
 ![step 2](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/assets/configure-cloudflare-workers-2.png)
 
 3. Congratulations! Your Worker is deployed to Region: **"Earth"**.
 
-Yes, Earth! It is available in Cloudflare's edge network.
+Yes, Earth! It is available in Cloudflare's global edge network.
+
+The base subdomain is preset by Cloudflare, but you can update it as you wish to. In my case, the base subdomain is **cache-cloud-demo**.
 
 ![step 3](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/assets/configure-cloudflare-workers-3.png)
 
 #### 2.2. Configure KV
 
-1. Click **"KV"** > **"Create a namespace"** > Name your Cache Cloud KV **"Namespace"** > **"Add"**
+1. Click **"KV"** > Click **"Create a namespace"** > Name your KV namespace as **"cache-cloud"** > **"Add"**
 
 ![step 1](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/assets/configure-kv-1.png)
 
@@ -48,7 +50,7 @@ git clone git@github.com:patrick-kw-chiu/cache-cloud.git
 cd ./cache-cloud
 ```
 
-2. Before we deploy to Cloudflare Workers, we need to install relevant package first
+2. Install package - Cloudflare expect the deployed workers script to have all the relevant package
 
 _Note: my current Node.js version is v18.12.1_
 
@@ -75,11 +77,19 @@ Replace the `id` and `preview_id` with the KV id you get in **"Step 2 - Configur
 Login in the terminal > **"Allow"** Wrangler to make changes
 
 ```shell
+# If you have wrangler installed
 wrangler login
+
+# If you don't
+npm run login
 ```
 
 ![step 1](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/assets/deploy-to-cloudflare-workers-1.png)
 
 ```shell
+# If you have wrangler installed
 wrangler deploy
+
+# If you don't
+npm run deploy
 ```
