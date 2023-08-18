@@ -1,9 +1,15 @@
 # Quick Setup Guide
 
+Already set up Cache Cloud? Visit the [API Doc](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/doc/API-DOC.md) for the actual usage.
+
+## Table of Content
+
 1. [Create a Cloudflare account](#1-create-a-cloudflare-account)
 2. [Configure Cloudflare Workers KV](#2-configure-cloudflare-workersand-kv)
 3. [Clone and setup Cache Cloud](#3-clone-and-setup-cache-cloud)
 4. [Deploy to Cloudflare Workers!](#4-deploy-to-cloudflare-workers)
+
+---
 
 ### 1. Create a Cloudflare account
 
