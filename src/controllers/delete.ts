@@ -2,6 +2,8 @@ import { Context } from 'hono';
 
 import { KeyParam, DeleteBody, DeleteBodySchema } from '../schema/schema';
 
+import { parseZodError } from '../utilities/utilities';
+
 export const Delete = async (c: Context) => {
   const param: KeyParam = c.req.param() as KeyParam;
 
@@ -16,7 +18,7 @@ export const BulkDelete = async (c: Context) => {
   const bodyCheck = DeleteBodySchema.safeParse(body);
   if (!bodyCheck.success) {
     c.status(400);
-    return c.json({ success: false, error: bodyCheck.error });
+    return c.json({ success: false, error: parseZodError(bodyCheck.error) });
   }
 
   // 2. Bulk Delete

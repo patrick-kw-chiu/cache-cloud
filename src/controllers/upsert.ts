@@ -9,7 +9,10 @@ import {
   UpsertBodySchema,
 } from '../schema/schema';
 
-import { formulateValueAndMetadata } from '../utilities/utilities';
+import {
+  formulateValueAndMetadata,
+  parseZodError,
+} from '../utilities/utilities';
 
 export const Upsert = async (c: Context) => {
   // 1. Type check
@@ -25,7 +28,7 @@ export const Upsert = async (c: Context) => {
   const bodyCheck = UpsertBodyWithoutKeySchema.safeParse(body);
   if (!bodyCheck.success) {
     c.status(400);
-    return c.json({ success: false, error: bodyCheck.error });
+    return c.json({ success: false, error: parseZodError(bodyCheck.error) });
   }
 
   // 2. Upsert
@@ -42,7 +45,7 @@ export const BulkUpsert = async (c: Context) => {
   const bodyCheck = UpsertBodySchema.safeParse(body);
   if (!bodyCheck.success) {
     c.status(400);
-    return c.json({ success: false, error: bodyCheck.error });
+    return c.json({ success: false, error: parseZodError(bodyCheck.error) });
   }
 
   // 2. Bulk Upsert
