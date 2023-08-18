@@ -14,32 +14,35 @@ import { List } from './controllers/list';
 // Middlewares
 const app = new Hono<{ Bindings: Env }>();
 app.onError((error, c) => {
-	c.status(500);
-	return c.json({ success: false, error: error.message });
+  c.status(500);
+  return c.json({ success: false, error: error.message });
 });
+
 app.use('*', prettyJSON());
+
 app.use('*', async (c: Context, next: Next) => {
-	// No API token is set
-	if (!c.env.API_TOKEN) {
-		return next();
-	}
-
-	// API token is set
-	// Should check the client's auth
-	if (
-		c.req.header('Authorization') === `Bearer ${c.env.API_TOKEN}` ||
-		c.req.header('x-api-token') === c.env.API_TOKEN
-	) {
-		return next();
-	}
-
-	throw new Error('Unauthorized');
+  const corsMiddleware = cors({
+    origin: c.env.CORS_ORIGINS ?? [],
+  });
+  return corsMiddleware(c, next);
 });
+
 app.use('*', async (c: Context, next: Next) => {
-	const corsMiddleware = cors({
-		origin: c.env.CORS_ORIGINS ?? [],
-	});
-	return corsMiddleware(c, next);
+  // No API token is set
+  if (!c.env.API_TOKEN) {
+    return next();
+  }
+
+  // API token is set
+  // Should check the client's auth
+  if (
+    c.req.header('Authorization') === `Bearer ${c.env.API_TOKEN}` ||
+    c.req.header('x-api-token') === c.env.API_TOKEN
+  ) {
+    return next();
+  }
+
+  throw new Error('Unauthorized');
 });
 
 // Upsert
