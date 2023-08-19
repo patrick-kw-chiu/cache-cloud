@@ -5,7 +5,8 @@ Here's the [Get Started Guide](https://github.com/patrick-kw-chiu/cache-cloud/bl
 ## Table of Content
 
 1. [Authentication](#authentication)
-2. [Operations](#operations)
+1. [CORS](#cors)
+1. [Operations](#operations)
    1. [Upsert](#1-upsert)
    2. [Bulk Upsert](#2-bulk-upsert)
 
@@ -14,6 +15,8 @@ Here's the [Get Started Guide](https://github.com/patrick-kw-chiu/cache-cloud/bl
 ## Authentication
 
 ![API Doc Authentication](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/assets/api-doc-authentication.png)
+
+Important: Everytime you update `API_TOKEN`, you need to `wrangler deploy` or `npm run deploy` to Cloudflare.
 
 If you've enabled API token protection for your Cache Cloud host, there are 2 ways you can pass the `API_TOKEN` in the operations
 
@@ -40,6 +43,16 @@ curl --location --request PUT '<b>{{YOUR_CACHE_CLOUD_HOST}}</b>/kv/values/key-1'
     "expirationTtl": 3600
 }'
 </pre>
+
+---
+
+## CORS
+
+![API Doc Authentication](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/assets/api-doc-cors.png)
+
+Important: Everytime you update `CORS_ORIGINS`, you need to `wrangler deploy` or `npm run deploy` to Cloudflare.
+
+By default,
 
 ---
 
