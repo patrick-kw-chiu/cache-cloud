@@ -14,6 +14,11 @@ import { List } from './controllers/list';
 // Middlewares
 const app = new Hono<{ Bindings: Env }>();
 app.onError((error, c) => {
+  if (error.message === 'Unauthorized') {
+    c.status(401);
+    return c.json({ success: false, error: error.message });
+  }
+
   c.status(500);
   return c.json({ success: false, error: error.message });
 });
