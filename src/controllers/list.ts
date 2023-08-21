@@ -10,6 +10,9 @@ export const List = async (c: Context) => {
     cursor,
   });
 
+  value.listComplete = value.list_complete;
+  delete value.list_complete;
+
   return c.json({
     success: true,
     ...value,
