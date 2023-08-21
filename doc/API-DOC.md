@@ -55,6 +55,17 @@ curl --location --request PUT '<b>{{YOUR_CACHE_CLOUD_HOST}}</b>/kv/values/key-1'
 }'
 </pre>
 
+If the API token is invalid, the error response will be
+
+HTTP Status: **401 Unauthorized**
+
+```JSON
+{
+  "success": false,
+  "error": "Unauthorized"
+}
+```
+
 ---
 
 ## CORS
@@ -65,17 +76,15 @@ curl --location --request PUT '<b>{{YOUR_CACHE_CLOUD_HOST}}</b>/kv/values/key-1'
 
 In `wrangler.toml`...
 
-If you haven't enabled CORS, no domains are allowed to access your Cache Cloud host via the browser.
-
-To cors-enabled all domains, update the line to be `CORS_ORIGINS = "*"`.
-
-To cors-enabled only a few domains, update the line to be `CORS_ORIGINS = ["{{host-you-allowed}}", "https://example.com"]`.
+- If you haven't enabled CORS, no domains are allowed to access your Cache Cloud host via the browser
+- To cors-enabled all domains, update the line to be `CORS_ORIGINS = "*"`
+- To cors-enabled only a few domains, update the line to be `CORS_ORIGINS = ["{{host-you-allowed}}", "https://example.com"]`
 
 ---
 
 ## Operations
 
-Cache Cloud mainly let you `upsert` values to cache key, `get` value of cache key, `delete` cache key and `list` the existing cache key.
+Cache Cloud let you `upsert` values to cache key, `get` value of cache key, `delete` cache key and `list` the existing cache key.
 
 ### 1. Upsert a cache key
 
@@ -139,8 +148,8 @@ const { success, error } = await fetch(
   {
     method: 'PUT',
     headers: {
-        "X-API-Token": "{{YOUR_SECURE_API_TOKEN}}",
-        "Content-Type": "application/json"
+      "X-API-Token": "{{YOUR_SECURE_API_TOKEN}}",
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
       value: {
@@ -235,8 +244,8 @@ const { success, error } = await fetch(
   {
     method: 'POST',
     headers: {
-        "X-API-Token": "{{YOUR_SECURE_API_TOKEN}}",
-        "Content-Type": "application/json"
+      "X-API-Token": "{{YOUR_SECURE_API_TOKEN}}",
+      "Content-Type": "application/json"
     },
     body: JSON.stringify([
       {
@@ -318,8 +327,7 @@ const { success, error, result } = await fetch(
   {
     method: 'GET',
     headers: {
-        "X-API-Token": "{{YOUR_SECURE_API_TOKEN}}",
-        "Content-Type": "application/json"
+      "X-API-Token": "{{YOUR_SECURE_API_TOKEN}}",
     }
   }
 )
@@ -330,7 +338,7 @@ const { success, error, result } = await fetch(
 
 ### 4. Bulk Get values of cache keys
 
-**GET** `/kv/values?key={{key-1}}&key={{key-2}}...`
+**GET** `/kv/keys?key={{key-1}}&key={{key-2}}...`
 
 #### Query Paramater
 
@@ -368,13 +376,12 @@ In this example, we...
   <summary>JavaScript - Fetch</summary>
   
 ```javascript
-const { success, error, result } = await fetch(
+const { success, error, results } = await fetch(
   "{{YOUR_CACHE_CLOUD_HOST}}/kv/values?key=hot-products&key=recommended-products-for-cluster-6",
   {
     method: 'GET',
     headers: {
-        "X-API-Token": "{{YOUR_SECURE_API_TOKEN}}",
-        "Content-Type": "application/json"
+      "X-API-Token": "{{YOUR_SECURE_API_TOKEN}}",
     }
   }
 )
@@ -385,7 +392,49 @@ const { success, error, result } = await fetch(
 
 ### 5. Delete a cache key
 
-placeholder
+**DELETE** `/kv/values/{{key}}`
+
+#### Path Parameter
+
+| Field | Required? | Default Value | Type   | Description             |
+| ----- | --------- | ------------- | ------ | ----------------------- |
+| key   | ✅        |               | string | The cache key to delete |
+
+#### Response Body
+
+| Field   | Type    | Description                                  |
+| ------- | ------- | -------------------------------------------- |
+| success | boolean | Whether the operation is successful          |
+| error   | string  | Error message (if operation is unsuccessful) |
+
+#### Example
+
+**DELETE** `/kv/values/event-1-pinned-messages`
+
+<details>
+  <summary>Explaination</summary>
+
+<br>
+
+In the example, we delete the cache key `event-1-pinned-messages`
+
+</details>
+
+<details>
+  <summary>JavaScript - Fetch</summary>
+  
+```javascript
+const { success, error } = await fetch(
+  "{{YOUR_CACHE_CLOUD_HOST}}/kv/values/event-1-pinned-messages",
+  {
+    method: 'DELETE',
+    headers: {
+      "X-API-Token": "{{YOUR_SECURE_API_TOKEN}}",
+    }
+  }
+)
+```
+</details>
 
 ---
 
@@ -393,8 +442,113 @@ placeholder
 
 placeholder
 
+**DELETE** `/kv/values`
+
+#### Request Body
+
+Array of strings which represent the `cache keys`.
+
+#### Response Body
+
+| Field   | Type    | Description                                  |
+| ------- | ------- | -------------------------------------------- |
+| success | boolean | Whether the operation is successful          |
+| error   | string  | Error message (if operation is unsuccessful) |
+
+#### Example
+
+**DELETE** `/kv/values`
+
+```JSON
+[
+  "event-1-pinned-messages",
+  "event-2-pinned-messages",
+  "event-3-pinned-messages"
+]
+```
+
+<details>
+  <summary>Explaination</summary>
+
+<br>
+
+In the example, we delete the cache key `event-1-pinned-messages`, `event-2-pinned-messages`, `event-3-pinned-messages`.
+
+</details>
+
+<details>
+  <summary>JavaScript - Fetch</summary>
+
+```javascript
+const { success, error } = await fetch('{{YOUR_CACHE_CLOUD_HOST}}/kv/values', {
+  method: 'DELETE',
+  headers: {
+    'X-API-Token': '{{YOUR_SECURE_API_TOKEN}}',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify([
+    'event-1-pinned-messages',
+    'event-2-pinned-messages',
+    'event-3-pinned-messages',
+  ]),
+});
+```
+
+</details>
+
 ---
 
 ### 7. List cache keys
 
 placeholder
+
+**GET** `/kv/values?prefix={{prefix}}&limit={{limit}}&cursor={{cursor}}`
+
+#### Query Paramater
+
+| Field  | Required? | Default Value | Type    | Description                                                                                                                                                                   |
+| ------ | --------- | ------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| prefix |           |               | string  | Represents a prefix you can use to filter all keys                                                                                                                            |
+| limit  |           |               | integer | The maximum number of keys returned. The default is 1,000, which is the maximum. It is unlikely that you will want to change this default but it is included for completeness |
+| cursor |           |               | string  | Used for paginating responses. `cursor` will be returned if there are more cache keys than the `limit`.                                                                       |
+
+#### Response Body
+
+| Field        | Type            | Description                                                                                                                               |
+| ------------ | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| success      | boolean         | Whether the operation is successful                                                                                                       |
+| keys         | array of string | The available cache keys                                                                                                                  |
+| listComplete | boolean         | If there are more cache keys to be listed than the specified `limit`, `listComplete` will be `false` and vice versa                       |
+| cursor       | string          | Used for paginating responses. `cursor` will be returned if `listComplete` is false (there are more cache keys to list than the `limit`). |
+| error        | string          | Error message (if operation is unsuccessful)                                                                                              |
+
+#### Example
+
+**GET** `/kv/values?prefix=user%3A1%3A&limit=10`
+
+<details>
+  <summary>Explaination</summary>
+
+<br>
+
+In the example, we list all the `cache keys` related to the user 1, which is prefixed with `user:1:`. We also set the `limit` to 10. Therefore max only 10 `cache keys` starting with `user:1:` will be returned.
+
+</details>
+
+<details>
+  <summary>JavaScript - Fetch</summary>
+  
+```javascript
+const { success, error, keys, listComplete, cursor } = await fetch(
+  "{{YOUR_CACHE_CLOUD_HOST}}/kv/values?prefix=user%3A1%3A&limit=10",
+  {
+    method: 'GET',
+    headers: {
+      "X-API-Token": "{{YOUR_SECURE_API_TOKEN}}",
+    }
+  }
+)
+```
+</details>
+
+---
