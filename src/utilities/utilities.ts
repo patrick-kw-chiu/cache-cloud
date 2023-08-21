@@ -33,8 +33,12 @@ export const formulateValueAndMetadata = (body: UpsertBodyWithoutKey) => {
 export const parseZodError = (error: any) => {
   let errorMessages: string[] = [];
   error?.issues?.forEach((issue: any) => {
-    if (issue?.path?.length > 0 && issue?.message) {
-      errorMessages.push(`${issue.path.join('.')}: ${issue.message}`);
+    if (issue?.message) {
+      errorMessages.push(
+        `${issue.path.length > 0 ? issue.path.join('.') + ': ' : ''}${
+          issue.message
+        }`
+      );
     }
   });
   return errorMessages.join(', ');
