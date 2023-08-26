@@ -58,3 +58,4 @@ See detailed results in the [benchmarks doc](https://github.com/patrick-kw-chiu/
 ## Blogs
 
 [Need some quick cache? Try Cache Cloud!](https://medium.com/@patrick-kw-chiu/need-some-quick-cache-try-cache-cloud-35269aa703eb)
+[Turn your Cloudflare Workers and KV into a fast serverless cache store with HTTP endpoints](https://dev.to/patrickkwchiu/turn-your-cloudflare-workers-and-kv-into-a-fast-serverless-cache-store-with-http-endpoints-102g)

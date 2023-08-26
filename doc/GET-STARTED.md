@@ -83,19 +83,11 @@ Replace the `id` and `preview_id` with the KV id you get in **"Step 2 - Configur
 Login in the terminal > **"Allow"** Wrangler to make changes
 
 ```shell
-# If you have wrangler installed
-wrangler login
-
-# If you don't
-npm run login
+npx wrangler login
 ```
 
 ![step 1](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/assets/deploy-to-cloudflare-workers-1.png)
 
 ```shell
-# If you have wrangler installed
-wrangler deploy
-
-# If you don't
-npm run deploy
+npx wrangler deploy
 ```
