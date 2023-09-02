@@ -53,7 +53,7 @@ Notice the ID here - it will be used in Step 3.
 
 ```shell
 git clone git@github.com:patrick-kw-chiu/cache-cloud.git
-cd ./cache-cloud
+cd ./cache-cloud/app
 ```
 
 2. Install package - Cloudflare expect the deployed workers script to have all the relevant package

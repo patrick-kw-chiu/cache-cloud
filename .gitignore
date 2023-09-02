@@ -131,5 +131,5 @@ dist
 
 # Local directories
 /local
-/.wrangler
+*.wrangler*
 wrangler.toml
