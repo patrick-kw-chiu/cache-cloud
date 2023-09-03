@@ -1,0 +1,21 @@
+{
+  "name": "cache-cloud-cli",
+  "version": "0.0.7",
+  "description": "Cache Cloud's setup CLI utility",
+  "type": "module",
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patrick-kw-chiu/cache-cloud.git"
+  },
+  "author": "Patrick Chiu",
+  "license": "MIT",
+  "dependencies": {
+    "@inquirer/prompts": "^3.0.4",
+    "chalk": "^5.3.0"
+  }
+}
