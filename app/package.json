@@ -1,34 +1,39 @@
 {
-	"name": "cache-cloud",
-	"version": "0.0.1",
-	"description": "Ultrafast caching with HTTP API, built on Cloudflare Workers, KV and Hono",
-	"private": true,
-	"scripts": {
-		"deploy": "wrangler deploy",
-		"start": "wrangler dev",
-		"login": "wrangler login"
-	},
-	"keywords": [
-		"cache",
-		"in memory database",
-		"kv",
-		"http",
-		"async",
-		"serverless",
-		"cloudflare workers",
-		"typescript",
-		"hono"
-	],
-	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20230717.0",
-		"@types/jest": "^29.5.3",
-		"jest": "^29.6.1",
-		"ts-jest": "^29.1.1",
-		"typescript": "^5.1.6",
-		"wrangler": "^3.0.0"
-	},
-	"dependencies": {
-		"hono": "^3.3.1",
-		"zod": "^3.21.4"
-	}
+  "name": "cache-cloud-app",
+  "version": "1.0.0",
+  "description": "Fast serverless caching via HTTP endpoints, built on Cloudflare Workers, KV and Hono",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "start": "wrangler dev",
+    "login": "wrangler login"
+  },
+  "keywords": [
+    "cache",
+    "in memory database",
+    "kv",
+    "http",
+    "async",
+    "serverless",
+    "cloudflare workers",
+    "typescript",
+    "hono"
+  ],
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230717.0",
+    "@types/jest": "^29.5.3",
+    "jest": "^29.6.1",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.1.6",
+    "wrangler": "^3.0.0"
+  },
+  "dependencies": {
+    "hono": "^3.3.1",
+    "zod": "^3.21.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patrick-kw-chiu/cache-cloud.git"
+  },
+  "author": "Patrick Chiu",
+  "license": "MIT"
 }
