@@ -21,7 +21,7 @@ const exec = util.promisify(child_process.exec);
 
 // 1
 const checkHasCreatedCFAccount = async () => {
-  console.yellowLog('(1/4) Create Cloudflare Account');
+  console.yellowLog('(1/4) Have Created a Cloudflare Account');
   const hasCreatedCFAccount = await confirm({
     message: 'Have you created a Cloudflare account?',
     default: 'y',
@@ -62,7 +62,7 @@ const loginToCF = async () => {
 // 2
 const gitClone = async () => {
   console.log('');
-  console.yellowLog('(2/4) Clone and Setup Cache Cloud Git Repo');
+  console.yellowLog('(2/4) Clone and Setup Cache Cloud');
 
   try {
     console.ccLog(COMMAND.gitClone);
@@ -111,7 +111,6 @@ const configureWorkerAndKv = async () => {
   let workerName = await askForName();
   workerName = workerName.toLowerCase();
 
-  console.yellowLog(`\nCache Cloud Git repo will be cloned as ${workerName}`);
   console.yellowLog(
     `Your Cache Cloud url will be https://${workerName}.<your-cloudflare-subdomain>.workers.dev\n`
   );

@@ -1,6 +1,6 @@
 {
   "name": "cache-cloud-cli",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Cache Cloud's setup CLI utility",
   "type": "module",
   "main": "index.js",
