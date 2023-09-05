@@ -133,3 +133,4 @@ dist
 /local
 *.wrangler*
 wrangler.toml
+/cli/cache-cloud*
