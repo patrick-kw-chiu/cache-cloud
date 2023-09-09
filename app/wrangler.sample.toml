@@ -3,7 +3,7 @@ main = "src/index.ts"
 compatibility_date = "2023-07-31"
 
 [vars]
-# API_TOKEN = "c50b281d-2776-4b9f-9d1e-402539ee4e35"
+# API_KEY = "c50b281d-2776-4b9f-9d1e-402539ee4e35"
 # CORS_ORIGINS = "*"
 
 [[kv_namespaces]]

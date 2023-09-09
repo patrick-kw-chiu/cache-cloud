@@ -33,16 +33,16 @@ app.use('*', async (c: Context, next: Next) => {
 });
 
 app.use('*', async (c: Context, next: Next) => {
-  // No API token is set
-  if (!c.env.API_TOKEN) {
+  // No API key is set
+  if (!c.env.API_KEY) {
     return next();
   }
 
-  // API token is set
+  // API key is set
   // Should check the client's auth
   if (
-    c.req.header('Authorization') === `Bearer ${c.env.API_TOKEN}` ||
-    c.req.header('x-api-token') === c.env.API_TOKEN
+    c.req.header('Authorization') === `Bearer ${c.env.API_KEY}` ||
+    c.req.header('x-api-key') === c.env.API_KEY
   ) {
     return next();
   }

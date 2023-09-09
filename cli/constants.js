@@ -73,14 +73,14 @@ Name must match the following criteria:
       'Initialize "wrangler.toml" and set up the Worker\'s name as "{{workerName}}"',
   },
   4: {
-    title: '(4/4) Optional settigs for API token and CORS',
-    apiTokenAnswer: {
+    title: '(4/4) Optional settigs for API key and CORS',
+    apiKeyAnswer: {
       message:
-        "(Optional) Would you like to protect your Cache Cloud with an API token? Here's some freshly generated UUIDs!",
+        "(Optional) Would you like to protect your Cache Cloud with an API key? Here's some freshly generated UUIDs!",
       choices: [
         {
-          name: 'Input custom API token',
-          value: 'custom-api-token',
+          name: 'Input custom API key',
+          value: 'custom-api-key',
         },
         {
           name: 'Nope',
@@ -88,8 +88,8 @@ Name must match the following criteria:
         },
       ],
     },
-    customApiToken: 'Your custom API token',
-    notAddingApiToken: 'Not adding API token to your Cache Cloud',
+    customApiKey: 'Your custom API key',
+    notAddingApiKey: 'Not adding API key to your Cache Cloud',
     corsAnswer: {
       message:
         '(Optional) Would you like to add CORS origins to your Cache Cloud?',

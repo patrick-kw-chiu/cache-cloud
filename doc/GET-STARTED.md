@@ -74,7 +74,7 @@ Replace the `id` and `preview_id` with the KV id you get in **"Step 2 - Configur
 
 ![step 2](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/assets/configure-wrangler-toml-2.png)
 
-(Optional) Safe guard your KV with an **ultra-super-secure** `API_TOKEN`
+(Optional) Safe guard your KV with an **ultra-super-secure** `API_KEY`
 
 (Optional) Add `CORS_ORIGINS` if it is meant to be accessed via the browser
 

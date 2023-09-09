@@ -236,20 +236,20 @@ const setupOptionalSettings = async () => {
 
   const uuids = new Array(4).fill(0).map(() => uuidv4());
 
-  let apiTokenAnswer = await select({
-    message: STEP['4'].apiTokenAnswer.message,
+  let apiKeyAnswer = await select({
+    message: STEP['4'].apiKeyAnswer.message,
     choices: [
       ...uuids.map((uuid) => ({
         name: uuid,
         value: uuid,
       })),
-      ...STEP['4'].apiTokenAnswer.choices,
+      ...STEP['4'].apiKeyAnswer.choices,
     ],
   });
 
-  if (apiTokenAnswer === 'custom-api-token') {
-    apiTokenAnswer = await input({
-      message: STEP['4'].customApiToken,
+  if (apiKeyAnswer === 'custom-api-key') {
+    apiKeyAnswer = await input({
+      message: STEP['4'].customApiKey,
     });
   }
 
@@ -265,10 +265,10 @@ const setupOptionalSettings = async () => {
   }
 
   let varsSection = TOML.varsSection;
-  if (apiTokenAnswer === 'no') {
-    console.ccLog(STEP['4'].notAddingApiToken);
+  if (apiKeyAnswer === 'no') {
+    console.ccLog(STEP['4'].notAddingApiKey);
   } else {
-    varsSection = varsSection + '\n' + `API_TOKEN = "${apiTokenAnswer}"`;
+    varsSection = varsSection + '\n' + `API_KEY = "${apiKeyAnswer}"`;
   }
 
   if (corsAnswer === 'disallow-all-origins') {
@@ -282,7 +282,7 @@ const setupOptionalSettings = async () => {
       `CORS_ORIGINS = ${JSON.stringify(corsAnswer.split(','))}`;
   }
 
-  if (apiTokenAnswer === 'no' && corsAnswer === 'disallow-all-origins') {
+  if (apiKeyAnswer === 'no' && corsAnswer === 'disallow-all-origins') {
     return;
   }
 

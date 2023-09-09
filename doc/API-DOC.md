@@ -25,17 +25,17 @@ Here's the [Get Started Guide](https://github.com/patrick-kw-chiu/cache-cloud/bl
 
 ![API Doc Authentication](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/assets/api-doc-authentication.png)
 
-> Important: Everytime you update `API_TOKEN`, you need to `wrangler deploy` or `npm run deploy` to Cloudflare.
+> Important: Everytime you update `API_KEY`, you need to `wrangler deploy` or `npm run deploy` to Cloudflare.
 
 In `wrangler.toml`...
 
-If you've enabled API token protection for your Cache Cloud host, there are 2 ways you can pass the `API_TOKEN` in the operations
+If you've enabled API key protection for your Cache Cloud host, there are 2 ways you can pass the `API_KEY` in the operations
 
-1. `X-API-Token` header
+1. `X-API-Key` header
 
 <pre>
 curl --location --request PUT '<b>{{YOUR_CACHE_CLOUD_HOST}}</b>/kv/values/key-1' \
---header '<b>X-API-Token: {{YOUR_SECURE_API_TOKEN}}</b>' \
+--header '<b>X-API-Key: {{YOUR_SECURE_API_KEY}}</b>' \
 --header 'Content-Type: application/json' \
 --data '{
     "value": { "nested": "value" },
@@ -47,7 +47,7 @@ curl --location --request PUT '<b>{{YOUR_CACHE_CLOUD_HOST}}</b>/kv/values/key-1'
 
 <pre>
 curl --location --request PUT '<b>{{YOUR_CACHE_CLOUD_HOST}}</b>/kv/values/key-1' \
---header '<b>Authorization: Bearer {{YOUR_SECURE_API_TOKEN}}</b>' \
+--header '<b>Authorization: Bearer {{YOUR_SECURE_API_KEY}}</b>' \
 --header 'Content-Type: application/json' \
 --data '{
     "value": { "nested": "value" },
@@ -55,7 +55,7 @@ curl --location --request PUT '<b>{{YOUR_CACHE_CLOUD_HOST}}</b>/kv/values/key-1'
 }'
 </pre>
 
-If the API token is invalid, the error response will be
+If the API key is invalid, the error response will be
 
 HTTP Status: **401 Unauthorized**
 
@@ -148,7 +148,7 @@ const { success, error } = await fetch(
   {
     method: 'PUT',
     headers: {
-      "X-API-Token": "{{YOUR_SECURE_API_TOKEN}}",
+      "X-API-Key": "{{YOUR_SECURE_API_KEY}}",
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
@@ -244,7 +244,7 @@ const { success, error } = await fetch(
   {
     method: 'POST',
     headers: {
-      "X-API-Token": "{{YOUR_SECURE_API_TOKEN}}",
+      "X-API-Key": "{{YOUR_SECURE_API_KEY}}",
       "Content-Type": "application/json"
     },
     body: JSON.stringify([
@@ -327,7 +327,7 @@ const { success, error, result } = await fetch(
   {
     method: 'GET',
     headers: {
-      "X-API-Token": "{{YOUR_SECURE_API_TOKEN}}",
+      "X-API-Key": "{{YOUR_SECURE_API_KEY}}",
     }
   }
 )
@@ -381,7 +381,7 @@ const { success, error, results } = await fetch(
   {
     method: 'GET',
     headers: {
-      "X-API-Token": "{{YOUR_SECURE_API_TOKEN}}",
+      "X-API-Key": "{{YOUR_SECURE_API_KEY}}",
     }
   }
 )
@@ -429,7 +429,7 @@ const { success, error } = await fetch(
   {
     method: 'DELETE',
     headers: {
-      "X-API-Token": "{{YOUR_SECURE_API_TOKEN}}",
+      "X-API-Key": "{{YOUR_SECURE_API_KEY}}",
     }
   }
 )
@@ -483,7 +483,7 @@ In the example, we delete the cache key `event-1-pinned-messages`, `event-2-pinn
 const { success, error } = await fetch('{{YOUR_CACHE_CLOUD_HOST}}/kv/values', {
   method: 'DELETE',
   headers: {
-    'X-API-Token': '{{YOUR_SECURE_API_TOKEN}}',
+    'X-API-Key': '{{YOUR_SECURE_API_KEY}}',
     'Content-Type': 'application/json',
   },
   body: JSON.stringify([
@@ -544,7 +544,7 @@ const { success, error, keys, listComplete, cursor } = await fetch(
   {
     method: 'GET',
     headers: {
-      "X-API-Token": "{{YOUR_SECURE_API_TOKEN}}",
+      "X-API-Key": "{{YOUR_SECURE_API_KEY}}",
     }
   }
 )
