@@ -124,11 +124,9 @@ export const CONTENT = {
  ----- ----- ----- ----- ----- ----- -----
 |     Welcome to Cache Cloud CLI 💵🐮     |
 |                                         |
-| We will help you setup your Cache Cloud |
-| to your Cloudflare Workers and KV,      |
-| by asking you a few questions.          |
-| You can also read the Get Started guide |
-| for reference on the steps!             |
+| This is Cache Cloud's CLI toolkit to    |
+| help you setup Cache Cloud on your      |
+| Cloudflare Workers and KV!              |
  ----- ----- ----- ----- ----- ----- -----
 
 `,
