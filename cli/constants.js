@@ -76,7 +76,7 @@ Name must match the following criteria:
     title: '(4/4) Optional settigs for API key and CORS',
     apiKeyAnswer: {
       message:
-        "(Optional) Would you like to protect your Cache Cloud with an API key? Here's some freshly generated UUIDs!",
+        "(Optional) Would you like to protect your Cache Cloud with an API key? Here're some freshly generated UUIDs!",
       choices: [
         {
           name: 'Input custom API key',
@@ -135,4 +135,10 @@ export const CONTENT = {
   _temp:
     'Get started guide: https://github.com/patrick-kw-chiu/cache-cloud/blob/main/doc/GET-STARTED.md',
   addToToml: `Adding the following to "wrangler.toml"`,
+  closing: `
+Congratulations! You have successfully setup Cache Cloud!
+Next, feel free to have a look on the API doc to see what you can do with Cache Cloud
+
+API Doc: https://github.com/patrick-kw-chiu/cache-cloud/blob/main/doc/API-DOC.md
+`,
 };

@@ -1,6 +1,6 @@
 # API Doc
 
-Here's the [Get Started Guide](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/doc/GET-STARTED.md) if you haven't set up Cache Cloud yet.
+Haven't set up Cache Cloud yet? Here's the [Get Started Guide](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/doc/GET-STARTED.md)
 
 ## Table of Content
 

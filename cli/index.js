@@ -155,6 +155,7 @@ const initWranglerToml = (workerName) => {
 
 const deployWorker = async () => {
   console.ccLog(COMMAND.wranglerDeploy);
+  console.log('');
 
   try {
     const { stdout, stderr } = await exec(`${COMMAND.cdToApp}
@@ -303,7 +304,7 @@ const setupOptionalSettings = async () => {
 };
 
 const run = async () => {
-  // 0. intro
+  // 0. Intro
   console.yellowLog(CONTENT.intro);
 
   // 1. Create a Cloudflare account
@@ -322,6 +323,9 @@ const run = async () => {
   // 4. Optional Settings
   await setupOptionalSettings();
   await deployWorker();
+
+  // 5. Closing
+  console.yellowLog(CONTENT.closing);
 };
 
 run();
