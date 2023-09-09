@@ -37,6 +37,88 @@ export const REGEX = {
   extractKvId: /^\{ binding = "kv", id = ".+" \}$/,
 };
 
+export const STEP = {
+  1: {
+    title: '(1/4) Have You Created a Cloudflare Account?',
+    confirmHasAccount: {
+      message: 'Have you created a Cloudflare account?',
+      default: 'y',
+    },
+    noAccountMessage: `Please create a Cloudflare account here - https://dash.cloudflare.com/sign-up
+Then, re-run this CLI utility again!
+`,
+    hasAccoutMessage: `Great! Please login by "Allowing Wrangler to make changes to your Cloudflare account".
+This is for configuring the Cloudflare Workers and KV in the next step.
+`,
+  },
+  2: {
+    title: '(2/4) Clone and Setup Cache Cloud',
+  },
+  3: {
+    title: '(3/4) Configure Worker and KV',
+    howToName: `How do you want to name your Cache Cloud? The name will appear in your Cache Cloud's url e.g.
+https://<your-cache-cloud-name>.<your-cloudflare-subdomain>.workers.dev
+
+Name must match the following criteria:
+- Consists of integers, letters, or hyphens only
+- Starts and ends with an integer or letter
+`,
+    yourWorkerUrl: `Your Cache Cloud url will be https://{{workerName}}.<your-cloudflare-subdomain>.workers.dev`,
+    askForName: {
+      message: 'Cache Cloud name',
+      default: 'cache-cloud',
+    },
+    invalidName: 'Name does not match the criteria :(',
+    initializeYourWorkerAs:
+      'Initialize "wrangler.toml" and set up the Worker\'s name as "{{workerName}}"',
+  },
+  4: {
+    title: '(4/4) Optional settigs for API token and CORS',
+    apiTokenAnswer: {
+      message:
+        "(Optional) Would you like to protect your Cache Cloud with an API token? Here's some freshly generated UUIDs!",
+      choices: [
+        {
+          name: 'Input custom API token',
+          value: 'custom-api-token',
+        },
+        {
+          name: 'Nope',
+          value: 'no',
+        },
+      ],
+    },
+    customApiToken: 'Your custom API token',
+    notAddingApiToken: 'Not adding API token to your Cache Cloud',
+    corsAnswer: {
+      message:
+        '(Optional) Would you like to add CORS origins to your Cache Cloud?',
+      choices: [
+        {
+          name: 'Allow all origins',
+          value: '"*"',
+          description:
+            '"*" - Allow all origins (from browser side) to access Cache Cloud',
+        },
+        {
+          name: 'Disallow all origins',
+          value: 'disallow-all-origins',
+          description:
+            'Disallow all origins (from browser side) to access Cache Cloud',
+        },
+        {
+          name: 'Input custom hosts',
+          value: 'custom-hosts',
+        },
+        ,
+      ],
+    },
+    customCorsHosts:
+      'Your custom hosts. Use comma to separate the hosts e.g. http://localhost:3000,http://example.com',
+    notAddingCors: 'Not adding CORS to your Cache Cloud',
+  },
+};
+
 export const CONTENT = {
   intro: `
  ----- ----- ----- ----- ----- ----- -----
@@ -49,7 +131,8 @@ export const CONTENT = {
 | for reference on the steps!             |
  ----- ----- ----- ----- ----- ----- -----
 
-Get started guide: https://github.com/patrick-kw-chiu/cache-cloud/blob/main/doc/GET-STARTED.md
 `,
+  _temp:
+    'Get started guide: https://github.com/patrick-kw-chiu/cache-cloud/blob/main/doc/GET-STARTED.md',
   addToToml: `Adding the following to "wrangler.toml"`,
 };

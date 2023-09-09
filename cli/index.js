@@ -11,7 +11,7 @@ import chalk from 'chalk';
 import { v4 as uuidv4 } from 'uuid';
 
 // Contants
-import { TOML, PATH, COMMAND, REGEX, CONTENT } from './constants.js';
+import { TOML, PATH, COMMAND, REGEX, CONTENT, STEP } from './constants.js';
 
 // Utilities
 import { handleError } from './utilities.js';
@@ -21,17 +21,15 @@ const exec = util.promisify(child_process.exec);
 
 // 1
 const checkHasCreatedCFAccount = async () => {
-  console.yellowLog('(1/4) Have Created a Cloudflare Account');
+  console.yellowLog(STEP['1'].title);
+  console.log('');
   const hasCreatedCFAccount = await confirm({
-    message: 'Have you created a Cloudflare account?',
-    default: 'y',
+    message: STEP['1'].confirmHasAccount.message,
+    default: STEP['1'].confirmHasAccount.default,
   });
 
   if (!hasCreatedCFAccount) {
-    console.log(
-      'Please create a Cloudflare account here - https://dash.cloudflare.com/sign-up'
-    );
-    console.log('Then, re-run this CLI utility again!');
+    console.log(STEP['1'].noAccountMessage);
   }
 
   console.log('');
@@ -40,13 +38,7 @@ const checkHasCreatedCFAccount = async () => {
 };
 
 const loginToCF = async () => {
-  console.yellowLog(
-    'Great! Please login by "Allowing Wrangler to make changes to your Cloudflare account".'
-  );
-  console.yellowLog(
-    'This is for configuring the Cloudflare Workers and KV in the next step.'
-  );
-  console.log('');
+  console.yellowLog(STEP['1'].hasAccoutMessage);
 
   console.ccLog(COMMAND.wranglerLogin);
   try {
@@ -62,14 +54,14 @@ const loginToCF = async () => {
 // 2
 const gitClone = async () => {
   console.log('');
-  console.yellowLog('(2/4) Clone and Setup Cache Cloud');
+  console.yellowLog(STEP['2'].title);
 
   try {
     console.ccLog(COMMAND.gitClone);
     const { stdout, stderr } = await exec(`${COMMAND.gitClone}`);
 
     //
-    const npmInstallResult = await npmInstall();
+    await npmInstall();
 
     return { stdout, stderr };
   } catch (e) {
@@ -96,23 +88,14 @@ const npmInstall = async () => {
 
 const configureWorkerAndKv = async () => {
   console.log('');
-  console.yellowLog('(3/4) Configure Worker and KV');
-  console.yellowLog(
-    "How do you want to name your Cache Cloud? The name will appear in your Cache Cloud's url e.g."
-  );
-
-  console.yellowLog(
-    'https://<your-cache-cloud-name>.<your-cloudflare-subdomain>.workers.dev\n'
-  );
-  console.yellowLog('Name must match the following criteria:');
-  console.yellowLog('- Consists of integers, letters, or hyphens only');
-  console.yellowLog('- Starts and ends with an integer or letter\n');
+  console.yellowLog(STEP['3'].title);
+  console.yellowLog(STEP['3'].howToName);
 
   let workerName = await askForName();
   workerName = workerName.toLowerCase();
 
   console.yellowLog(
-    `Your Cache Cloud url will be https://${workerName}.<your-cloudflare-subdomain>.workers.dev\n`
+    STEP['3'].yourWorkerUrl.replaceAll('{{workerName}}', workerName)
   );
 
   //
@@ -128,11 +111,11 @@ const configureWorkerAndKv = async () => {
 
 const askForName = async () => {
   const workerName = await input({
-    message: 'Cache Cloud name',
-    default: 'cache-cloud',
+    message: STEP['3'].askForName.message,
+    default: STEP['3'].askForName.default,
   });
   if (!REGEX.validateKvName.test(workerName)) {
-    console.yellowLog('Name does not match the criteria :(');
+    console.yellowLog(STEP['3'].invalidName);
     return await askForName();
   }
   return workerName;
@@ -156,7 +139,7 @@ const initWranglerToml = (workerName) => {
   try {
     console.log('');
     console.ccLog(
-      `Initialize "wrangler.toml" and set up the Worker's name as "${workerName}"`
+      STEP['3'].initializeYourWorkerAs.replaceAll('{{workerName}}', workerName)
     );
 
     const result = TOML.rawWrangler.replace(
@@ -249,75 +232,47 @@ const bindKvToWorker = (kvId) => {
 // 4.
 const setupOptionalSettings = async () => {
   console.log('');
-  console.yellowLog('(4/4) Optional settigs for API token and CORS');
+  console.yellowLog(STEP['4'].title);
 
   const uuids = new Array(4).fill(0).map(() => uuidv4());
 
   let apiTokenAnswer = await select({
-    message:
-      "(Optional) Would you like to protect your Cache Cloud with an API token? Here's some freshly generated UUIDs!",
+    message: STEP['4'].apiTokenAnswer.message,
     choices: [
-      {
-        name: 'Nope',
-        value: 'no',
-      },
       ...uuids.map((uuid) => ({
         name: uuid,
         value: uuid,
       })),
-      {
-        name: 'Input custom API token',
-        value: 'custom-api-token',
-      },
+      ...STEP['4'].apiTokenAnswer.choices,
     ],
   });
 
   if (apiTokenAnswer === 'custom-api-token') {
     apiTokenAnswer = await input({
-      message: 'Your custom API token',
+      message: STEP['4'].customApiToken,
     });
   }
 
   let corsAnswer = await select({
-    message:
-      '(Optional) Would you like to add CORS origins to your Cache Cloud?',
-    choices: [
-      {
-        name: 'Allow all origins',
-        value: '"*"',
-        description:
-          '"*" - Allow all origins (from browser side) to access Cache Cloud',
-      },
-      {
-        name: 'Disallow all origins',
-        value: 'disallow-all-origins',
-        description:
-          'Disallow all origins (from browser side) to access Cache Cloud',
-      },
-      {
-        name: 'Input custom hosts',
-        value: 'custom-hosts',
-      },
-      ,
-    ],
+    message: STEP['4'].corsAnswer.message,
+    choices: STEP['4'].corsAnswer.choices,
   });
 
   if (corsAnswer === 'custom-hosts') {
     corsAnswer = await input({
-      message:
-        'Your custom hosts. Use comma to separate the hosts e.g. http://localhost:3000,http://example.com',
+      message: STEP['4'].customCorsHosts,
     });
   }
 
   let varsSection = TOML.varsSection;
   if (apiTokenAnswer === 'no') {
-    console.ccLog(`Not adding API token to your Cache Cloud`);
+    console.ccLog(STEP['4'].notAddingApiToken);
   } else {
     varsSection = varsSection + '\n' + `API_TOKEN = "${apiTokenAnswer}"`;
   }
 
   if (corsAnswer === 'disallow-all-origins') {
-    console.ccLog(`Not adding CORS to your Cache Cloud`);
+    console.ccLog(STEP['4'].notAddingCors);
   } else if (corsAnswer === '"*"') {
     varsSection = varsSection + '\n' + `CORS_ORIGINS = ${corsAnswer}`;
   } else {
