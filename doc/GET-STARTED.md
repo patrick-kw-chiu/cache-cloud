@@ -2,7 +2,14 @@
 
 Already set up Cache Cloud? Visit the [API Doc](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/doc/API-DOC.md) for the actual usage.
 
-## Table of Content
+## Use Setup Wizard
+
+`npx cache-cloud-cli` to setup everything ~ 5 mins
+
+<img width="367" alt="Screenshot 2023-09-09 at 4 06 32 PM" src="https://github.com/patrick-kw-chiu/cache-cloud/assets/42149082/af411a16-cdbe-4f11-ae81-21a3ed76a705">
+
+
+## ...Or Manually Setup
 
 1. [Create a Cloudflare account](#1-create-a-cloudflare-account)
 2. [Configure Cloudflare Workers KV](#2-configure-cloudflare-workersand-kv)
