@@ -9,6 +9,12 @@ Cache Cloud quickly turns your [**Cloud**flare Workers](https://workers.cloudfla
 
 ## Quick example
 
+`npx cache-cloud-cli` to setup everything in 5 mins
+
+<img width="367" alt="Screenshot 2023-09-09 at 4 06 32 PM" src="https://github.com/patrick-kw-chiu/cache-cloud/assets/42149082/76782db9-a494-4a5f-962b-27dce5f9641a">
+
+and...
+
 ```javascript
 // You can define your own `cacheKey`, save and get values from it
 // e.g. user%3A1%3A <= encodeURIComponent('user:1:')
