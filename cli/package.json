@@ -1,6 +1,6 @@
 {
   "name": "cache-cloud-cli",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Cache Cloud's setup CLI utility",
   "type": "module",
   "main": "index.js",
@@ -26,9 +26,7 @@
   "author": "Patrick Chiu",
   "license": "MIT",
   "dependencies": {
-    "@inquirer/core": "4.0.0",
-    "@inquirer/input": "1.2.9",
-    "@inquirer/prompts": "3.0.4",
+    "@inquirer/prompts": "3.1.1",
     "chalk": "^5.3.0",
     "uuid": "^9.0.0"
   }
