@@ -23,7 +23,7 @@ Haven't set up Cache Cloud yet? Here's the [Get Started Guide](https://github.co
 
 ## Authentication
 
-![API Doc Authentication](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/assets/api-doc-authentication.png)
+![API Doc Authentication - Authentication](https://github.com/patrick-kw-chiu/cache-cloud/assets/42149082/0c19c1f3-93d9-419c-b37d-76cfe3693923)
 
 > Important: Everytime you update `API_KEY`, you need to `wrangler deploy` or `npm run deploy` to Cloudflare.
 
@@ -70,7 +70,8 @@ HTTP Status: **401 Unauthorized**
 
 ## CORS
 
-![API Doc Authentication](https://github.com/patrick-kw-chiu/cache-cloud/blob/main/assets/api-doc-cors.png)
+![API Doc Authentication - CORS](https://github.com/patrick-kw-chiu/cache-cloud/assets/42149082/07f7bf8a-20a9-448f-bb28-948f4dd750df)
+
 
 > Important: Everytime you update `CORS_ORIGINS`, you need to `wrangler deploy` or `npm run deploy` to Cloudflare.
 
